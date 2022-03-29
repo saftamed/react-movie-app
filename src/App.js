@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import MovieList from "./components/MovieList";
+import Filter from "./components/Filter";
 import AddModal from "./components/AddModal";
 import { Button,Container } from "react-bootstrap";
 import Search from "./components/Search";
@@ -51,19 +51,13 @@ function App() {
         </div>
       </nav>
       <Container className="re">
-        
       <Button className="btn" variant="primary" onClick={handleClose}>
         Add New Movie
       </Button>
       </Container>
+        <Filter movies={movies} search={search} />
       <AddModal handleClose={handleClose} show={show} addHandle={addHandle} />
-      <MovieList
-        movies={movies.filter(
-          (m) =>
-            m.title.search(new RegExp(search.search, "gi")) !== -1 &&
-            m.rating >= search.rate
-        )}
-      />
+      
     </div>
   );
 }
